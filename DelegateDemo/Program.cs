@@ -22,7 +22,21 @@ namespace DelegateDemo
             };
 
             var products = ProductsPricesImport.Import(path, action);
+            string key = string.Empty;
+            List<double> values = new List<double>();
 
+            Dictionary<string, Action> menuActions = new Dictionary<string, Action>
+            {
+                {"1", () => products.Add(key, values)},
+                {"2", () => products.Del(key)},
+                {"3", () => Show(products)}
+            };
+
+            menuActions["3"].Invoke();
+        }
+
+        private static void Show(ProductsPrices products)
+        {
             foreach (var (key, doubles) in products.Get())
             {
                 Console.Write($"{key}: ");

@@ -2,9 +2,10 @@
 
 public static class ProductsPricesImport
 {
-    public static ProductsPrices Import(string path)
+    public static ProductsPrices Import(string path, Action<string>? info = null)
     {
         var products = new ProductsPrices();
+        products.Info = info;
         
         var file = new StreamReader(path);
         var str = file.ReadToEnd();
